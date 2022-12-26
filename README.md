@@ -17,3 +17,9 @@
 
 Работа с модулем Concurrent futures
 ![С Concurrent futures](https://i.ibb.co/f4L3GKw/3.jpg)
+
+### Task 3.3.1
+
+## Частотность встреч валют с 2003 по 2022 года
+
+![Частотность](https://i.ibb.co/NxXKqZh/4.jpg)
