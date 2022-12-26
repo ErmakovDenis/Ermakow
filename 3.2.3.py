@@ -2,6 +2,7 @@ import multiprocessing
 import cProfile
 import os
 import pandas
+import concurrent.futures as con_fut
 
 list_print1 = ['Динамика уровня зарплат по годам: ','Динамика количества вакансий по годам: ',
                       'Динамика уровня зарплат по годам для выбранной профессии: ','Динамика количества вакансий по годам для выбранной профессии: ',
@@ -124,6 +125,16 @@ class Solution:
         for i in range(len(list_print1)):
             print(list_print1[i] + '{0}'.format(list_print2[i]))
 
+    def get_stats_by_year_with_concurrent_futures(self):
+        """Получает статистики по годам с использованием модуля concurrent futures
+        """
+        files = [rf"Data/info_by_years\{file_name}" for file_name in os.listdir("Data/info_by_years")]
+        with con_fut.ProcessPoolExecutor(max_workers=4) as executer:
+            res = executer.map(self.get_statistic_by_year, files)
+        result = list(res)
+
+        self.add_elements_to_stats(result)
+
 
 if __name__ == '__main__':
     solve = Solution(input("Введите название файла: "), input("Введите название профессии: "))
@@ -135,3 +146,4 @@ if __name__ == '__main__':
     # solve.split_by_year()
     # cProfile.run("solve.get_stats_by_year_not_with_multiprocessing()", sort="cumtime")
     # cProfile.run("solve.get_stats_by_year_with_multiprocessing()", sort="cumtime")
+    # cProfile.run("solve.get_stats_by_year_with_concurrent_futures()", sort="cumtime")
