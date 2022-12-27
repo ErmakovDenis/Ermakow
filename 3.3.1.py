@@ -45,5 +45,21 @@ def get_years_currency(file_name):
 
     res.to_csv("currency.csv", index=False)
 
+def info_by_year(path):
+    """
+    Группирует по годам
+    Args:
+        path (str): Путь к входному csv-файлу
+    """
+    df = pd.read_csv(path)
+    df["year"] = df["published_at"].apply(lambda x: x[:4])
+    df = df.groupby("year")
+    for y, info in df:
+        info[["name", "salary_from", "salary_to", "salary_currency", "area_name", "published_at"]].\
+            to_csv(rf"Data\new_info_by_years\{y}_year.csv", index=False)
+
+
+info_by_year("Data/vacancies_dif_currencies.csv")
+
 
 get_years_currency('Data/vacancies_dif_currencies.csv')
