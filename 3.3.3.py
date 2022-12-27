@@ -34,6 +34,7 @@ def get_page(num_of_page, second_part_of_day):
         request = requests.get('https://api.hh.ru/vacancies', parameters)
         info = request.content.decode()
         request.close()
+
     except:
         print("Неуспешный запрос")
         return get_page(num_of_page)

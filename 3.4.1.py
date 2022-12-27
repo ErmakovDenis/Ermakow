@@ -42,6 +42,7 @@ def get_conversion(filename):
     result["salary"] = result.apply(lambda r: converting_salaries_in_rubles(r), axis=1)
     result.drop(labels=["salary_from", "salary_to", "salary_currency"], axis=1, inplace=True)
     result = result[["name", "salary", "area_name", "published_at"]]
+
     result.to_csv("100_vac.csv", index=False)
 
 

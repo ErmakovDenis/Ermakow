@@ -32,6 +32,7 @@ def get_avg_salary(row):
 
 
 def get_conversion(filename):
+
     """Обрабатывает данные из колонок salary_from, salary_to, salary_currency и объединяет в колонку salary
     Args:
         filename: Путь к файлу vacancies_dif_currencies.csv
